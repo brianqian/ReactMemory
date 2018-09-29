@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import Scoreboard from './Scoreboard';
 
 export default class Game extends Component {
   state = {
     highScore: 0,
     currentScore: 0,
     gridSize: 25,
+    currentStatus: '',
     currentGuesses: [],
     gameArray: [],
   };
@@ -46,6 +48,11 @@ export default class Game extends Component {
     } else if (status === 'Win') {
       console.log('you win');
     }
+    if (this.state.currentScore > this.state.highScore)
+      this.setState({ highScore: this.state.currentScore });
+    this.setState({ currentScore: 0 });
+    this.setState({ currentGuesses: [] });
+    this.createGameArray();
   };
 
   handleCardClick = e => {
@@ -61,8 +68,11 @@ export default class Game extends Component {
         return this.gameOver('Win');
       }
       //Correct guess but no win
+      let gameArray = this.state.gameArray.slice();
+      gameArray = this.shuffleGameArray(gameArray);
+      this.setState({ currentScore: this.state.currentScore + 1 });
       this.setState({ currentGuesses });
-      // this.shuffleGameArray();
+      this.setState({ gameArray });
     }
   };
 
@@ -77,10 +87,14 @@ export default class Game extends Component {
               onClick={this.handleCardClick}
             />
           ))}
-          <div className="score-container">
-            <p>Current Score: {this.state.currentScore}</p>
-            <p>High Score: {this.state.highScore}</p>
-          </div>
+        </div>
+        <div className="score-container">
+          <Scoreboard
+            currentScore={this.state.currentScore}
+            highScore={this.state.highScore}
+            currentStatus={this.state.currentStatus}
+          />
+          <button onClick={this.gameOver}>Restart Game</button>
         </div>
       </div>
     );

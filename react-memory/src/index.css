@@ -2,15 +2,31 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  max-height: 100vh;
+}
+.game-container {
+  display: flex;
 }
 
 .card-container {
+  flex: 8;
   display: grid;
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  justify-content: center;
+  grid-template-columns: repeat(5, minmax(50px, 125px));
   grid-template-rows: repeat(5, minmax(50px, 1fr));
   grid-gap: 1rem;
 }
 
 .image-card {
   border: 1px black solid;
+}
+
+.image-card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.scoreboard {
+  flex: 1;
 }
