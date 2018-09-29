@@ -40,25 +40,29 @@ export default class Game extends Component {
     this.createGameArray();
   };
 
-  // gameOver = status => {
-  //   if (status === "Lose")
-  // };
+  gameOver = status => {
+    if (status === 'Lose') {
+      console.log('you lose');
+    } else if (status === 'Win') {
+      console.log('you win');
+    }
+  };
 
   handleCardClick = e => {
-    console.log(e.target.value);
+    console.log(e.currentTarget.dataset.id);
     const currentGuesses = this.state.currentGuesses.slice();
     //Check for incorrect guess
-    if (currentGuesses.includes(e.target.value)) {
+    if (currentGuesses.includes(e.currentTarget.dataset.id)) {
       return this.gameOver('Lose');
     } else {
-      currentGuesses.push(e.target.value);
+      currentGuesses.push(e.currentTarget.dataset.id);
       //Check for win
       if (currentGuesses.length === this.state.gridSize) {
         return this.gameOver('Win');
       }
       //Correct guess but no win
       this.setState({ currentGuesses });
-      this.shuffleGameArray();
+      // this.shuffleGameArray();
     }
   };
 
