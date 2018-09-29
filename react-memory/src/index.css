@@ -3,3 +3,14 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  grid-template-rows: repeat(5, minmax(50px, 1fr));
+  grid-gap: 1rem;
+}
+
+.image-card {
+  border: 1px black solid;
+}
