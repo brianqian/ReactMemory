@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import Scoreboard from './Scoreboard';
+import Select from './Select';
+import CardContainer from './CardContainer';
 
 export default class Game extends Component {
   state = {
@@ -76,10 +78,17 @@ export default class Game extends Component {
     }
   };
 
+  handleGridChange = e => {
+    this.setState({ gridSize: parseInt(e.target.value, 10) }, () => {
+      this.gameOver();
+    });
+    // this.setState({})
+  };
+
   render() {
     return (
       <div className="game-container">
-        <div className="card-container">
+        <CardContainer size={this.state.gridSize}>
           {this.state.gameArray.map(card => (
             <Card
               key={card.split('-')[0]}
@@ -87,7 +96,8 @@ export default class Game extends Component {
               onClick={this.handleCardClick}
             />
           ))}
-        </div>
+        </CardContainer>
+
         <div className="score-container">
           <Scoreboard
             currentScore={this.state.currentScore}
@@ -95,6 +105,12 @@ export default class Game extends Component {
             currentStatus={this.state.currentStatus}
           />
           <button onClick={this.gameOver}>Restart Game</button>
+          <label htmlFor="dropdown">Grid Size (restarts game): </label>
+          <Select
+            value={this.state.gridSize}
+            onChange={this.handleGridChange}
+            id="dropdown"
+          />
         </div>
       </div>
     );
