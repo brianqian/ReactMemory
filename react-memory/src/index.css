@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  padding: 2em;
+  padding: 0 2em;
   font-family: sans-serif;
   max-height: 100vh;
+  background-color: rgba(128, 0, 128, 0.349);
 }
 .game-container {
   display: flex;
@@ -13,31 +14,12 @@ body {
   display: grid;
   justify-content: center;
   grid-gap: 1rem;
-}
-
-.three {
-  grid-template-columns: repeat(3, minmax(50px, 150px));
-  grid-template-rows: repeat(3, minmax(50px, 1fr));
-}
-.four {
-  grid-template-columns: repeat(4, minmax(50px, 125px));
-  grid-template-rows: repeat(4, minmax(50px, 1fr));
-}
-.five {
-  grid-template-columns: repeat(5, minmax(50px, 125px));
-  grid-template-rows: repeat(5, minmax(50px, 1fr));
-}
-.six {
-  grid-template-columns: repeat(6, minmax(50px, 100px));
-  grid-template-rows: repeat(6, minmax(50px, 1fr));
-}
-.seven {
-  grid-template-columns: repeat(7, minmax(50px, 85px));
-  grid-template-rows: repeat(7, minmax(50px, 1fr));
+  height: 100vh;
+  align-content: center;
 }
 
 .image-card {
-  border: 1px black solid;
+  /* border: 1px black solid; */
 }
 
 .image-card > img {
@@ -48,9 +30,32 @@ body {
 
 .scoreboard {
   padding: 2em;
+  text-align: center;
 }
 .score-container {
+  flex: 1.75;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.s3 {
+  grid-template-columns: repeat(3, minmax(50px, 150px));
+  grid-template-rows: repeat(3, minmax(50px, 150px));
+}
+.s4 {
+  grid-template-columns: repeat(4, minmax(50px, 125px));
+  grid-template-rows: repeat(4, minmax(50px, 125px));
+}
+.s5 {
+  grid-template-columns: repeat(5, minmax(50px, 125px));
+  grid-template-rows: repeat(5, minmax(50px, 125px));
+}
+.s6 {
+  grid-template-columns: repeat(6, minmax(50px, 100px));
+  grid-template-rows: repeat(6, minmax(50px, 100px));
+}
+.s7 {
+  grid-template-columns: repeat(7, minmax(50px, 85px));
+  grid-template-rows: repeat(7, minmax(50px, 85px));
 }
