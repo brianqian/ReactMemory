@@ -13,6 +13,7 @@ export default class Game extends Component {
     currentGuesses: [],
     gameArray: [],
     enableClick: true,
+    editedImages: {},
   };
 
   componentDidMount = () => {
@@ -79,6 +80,7 @@ export default class Game extends Component {
       if (currentGuesses.includes(e.currentTarget.dataset.id)) {
         return this.gameOverText('Lose');
       } else {
+        this.setState({ currentScore: this.state.currentScore + 1 });
         currentGuesses.push(e.currentTarget.dataset.id);
         //Check for win
         if (currentGuesses.length === this.state.gridSize) {
@@ -87,7 +89,6 @@ export default class Game extends Component {
         //Correct guess but no win
         let gameArray = this.state.gameArray.slice();
         gameArray = this.shuffleGameArray(gameArray);
-        this.setState({ currentScore: this.state.currentScore + 1 });
         this.setState({ currentGuesses });
         this.setState({ gameArray });
       }

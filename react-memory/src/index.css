@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
 body {
   margin: 0;
   padding: 0 2em;
   font-family: sans-serif;
   max-height: 100vh;
   background-color: rgba(128, 0, 128, 0.349);
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
 }
 .game-container {
   display: flex;
@@ -37,6 +40,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+.emoji-sizer {
+  min-width: 20px;
 }
 
 .s3 {
