@@ -11,7 +11,9 @@ body {
 .game-container {
   display: flex;
 }
-
+.instructions {
+  flex: 2;
+}
 .card-container {
   flex: 8;
   display: grid;
@@ -36,13 +38,15 @@ body {
   text-align: center;
 }
 .score-container {
-  flex: 1.75;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.emoji-sizer {
-  min-width: 20px;
+
+.score-container > label {
+  margin: 1rem 0 0 0;
+  text-align: center;
 }
 
 .s3 {

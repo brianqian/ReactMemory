@@ -105,6 +105,10 @@ export default class Game extends Component {
   render() {
     return (
       <div className="game-container">
+        <div className="instructions">
+          <h1>The Emoji Memory Game</h1>
+          <p>Click on a unique emoji every time, remember what you click on!</p>
+        </div>
         <CardContainer size={this.state.gridSize}>
           {this.state.gameArray.map(card => (
             <Card
