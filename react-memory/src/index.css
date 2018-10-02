@@ -23,10 +23,6 @@ body {
   align-content: center;
 }
 
-.image-card {
-  /* border: 1px black solid; */
-}
-
 .image-card > img {
   width: 100%;
   height: 100%;
@@ -49,6 +45,10 @@ body {
   text-align: center;
 }
 
+.faded {
+  opacity: 0.3;
+}
+
 .s3 {
   grid-template-columns: repeat(3, minmax(50px, 150px));
   grid-template-rows: repeat(3, minmax(50px, 150px));
@@ -68,4 +68,22 @@ body {
 .s7 {
   grid-template-columns: repeat(7, minmax(50px, 85px));
   grid-template-rows: repeat(7, minmax(50px, 85px));
+}
+
+@media screen and (max-width: 650px) {
+  .game-container {
+    flex-direction: column;
+  }
+  .card-container {
+    grid-gap: 0;
+    flex: 1;
+    height: 100%;
+  }
+  .scoreboard {
+    padding: 0;
+  }
+  .s5 {
+    grid-template-columns: repeat(5, minmax(50px, 100px));
+    grid-template-rows: repeat(5, minmax(50px, 100px));
+  }
 }

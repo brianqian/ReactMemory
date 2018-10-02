@@ -13,7 +13,6 @@ export default class Game extends Component {
     currentGuesses: [],
     gameArray: [],
     enableClick: true,
-    editedImages: {},
   };
 
   componentDidMount = () => {
@@ -38,15 +37,17 @@ export default class Game extends Component {
     this.setState({ gameArray });
   };
 
+  //Fisher-Yates Shuffle
   shuffleGameArray = array => {
     const arrayCopy = array.slice();
     const shuffledArray = [];
     while (arrayCopy.length) {
-      //prettier-ignore
+      //Picks a random element in the array and adds it to the array to be returned
       const randomNumber = Math.floor(Math.random() * arrayCopy.length);
       shuffledArray.push(arrayCopy[randomNumber]);
       let lastImage = arrayCopy[arrayCopy.length - 1];
       //prettier-ignore
+      //Swaps the added item with the item at the end of the array and remove it
       [arrayCopy[randomNumber], lastImage] = [lastImage, arrayCopy[randomNumber]];
       arrayCopy.pop();
     }
@@ -54,26 +55,28 @@ export default class Game extends Component {
   };
 
   gameOverText = status => {
-    let fadedImage = document.querySelectorAll('.image-card');
     if (status === 'Lose') {
       this.setState({
         currentStatus: 'Game Over! You Lost! Click Restart to play again!',
       });
-      const currentGuesses = this.state.currentGuesses.slice();
+      //Selects all images and cross-references currentGuesses to apply transparency effect
+      const fadedImage = document.querySelectorAll('.image-card');
       Array.from(fadedImage)
-        .filter(image => currentGuesses.includes(image.dataset.id))
+        .filter(image => this.state.currentGuesses.includes(image.dataset.id))
         .forEach(image => (image.style.opacity = '.3'));
     } else if (status === 'Win') {
       this.setState({
         currentStatus: `Congrats! You Won! Click Restart to play again!`,
       });
     }
+    //Updates high score
     if (this.state.currentScore > this.state.highScore)
       this.setState({ highScore: this.state.currentScore });
     this.setState({ enableClick: false });
   };
 
   handleCardClick = e => {
+    //Checks for enableClick
     if (this.state.enableClick) {
       const currentGuesses = this.state.currentGuesses.slice();
       //Check for incorrect guess/loss
@@ -94,14 +97,13 @@ export default class Game extends Component {
       }
     }
   };
-  //* Why does this need a callback?
+
   handleGridChange = e => {
     this.setState({ gridSize: parseInt(e.target.value, 10) }, () => {
       this.gameStart();
     });
   };
 
-  //*Bad practice to store variable in the render function?
   render() {
     return (
       <div className="game-container">
